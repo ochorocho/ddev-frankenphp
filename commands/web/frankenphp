@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#ddev-generated
+
+## Description: Manage parts of keycloak
+## Usage: frankenphp COMMAND OPTIONS
+##        for COMMAND see frankenphp --help
+## Example: ddev frankenphp --help
+
+/usr/local/bin/frankenphp $@
+

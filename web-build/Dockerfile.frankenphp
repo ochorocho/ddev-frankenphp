@@ -1,0 +1,12 @@
+#ddev-generated
+ARG BASE_IMAGE
+FROM $BASE_IMAGE
+ENV FRANKENPHP_VERSION=v1.1.0
+
+RUN curl --fail -L -o /usr/local/bin/frankenphp https://github.com/dunglas/frankenphp/releases/download/${FRANKENPHP_VERSION}/frankenphp-linux-$(uname -m) && \
+    chmod +x /usr/local/bin/frankenphp
+
+ENTRYPOINT ["/mnt/ddev_config/commands/web/frankenphp-ctl", "start"]
+
+# See if frankenphp is running
+HEALTHCHECK --interval=1s --timeout=120s --retries=1 --start-period=120s CMD ps -p $(cat /tmp/frankenphp.pid) > /dev/null; exit $?

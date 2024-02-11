@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+#ddev-generated
+
+CMD=$1
+
+CMD=${CMD:=start}
+
+IFS=',' read -r -a domains <<< "$VIRTUAL_HOST"
+
+caddy_domains=""
+for domain in "${domains[@]}"; do
+    caddy_domains+="$domain:80, $domain:443, "
+done
+
+caddy_domains=${caddy_domains%, *}
+
+caddyfile=$(yq '.caddyfile' /mnt/ddev_config/frankenphp/config.yaml)
+envfile=$(yq '.envfile' /mnt/ddev_config/frankenphp/config.yaml)
+
+if [ $CMD = start ]; then
+    SERVER_NAME="$caddy_domains" \
+    MERCURE_PUBLIC_URL="$DDEV_PRIMARY_URL/.well-known/mercure" \
+    frankenphp run --resume --watch -c "$caddyfile" --envfile "$envfile" --pidfile /tmp/frankenphp.pid
+# usage
+else
+  echo "$0 start|stop|status"
+fi

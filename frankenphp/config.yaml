@@ -1,0 +1,3 @@
+#ddev-generated
+caddyfile: /mnt/ddev_config/frankenphp/Caddyfile
+envfile: /mnt/ddev_config/frankenphp/.env
