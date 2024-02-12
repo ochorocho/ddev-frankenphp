@@ -12,7 +12,7 @@ The WHY!
 ## Installation
 
 ```bash
-ddev get b13/ddev-frankenphp && ddev restart
+ddev get ochorocho/ddev-frankenphp && ddev restart
 ```
 
 ## Configuration
