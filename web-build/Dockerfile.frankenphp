@@ -1,6 +1,5 @@
 #ddev-generated
-ARG BASE_IMAGE
-FROM $BASE_IMAGE
+
 ENV FRANKENPHP_VERSION=v1.1.0
 
 RUN curl --fail -L -o /usr/local/bin/frankenphp https://github.com/dunglas/frankenphp/releases/download/${FRANKENPHP_VERSION}/frankenphp-linux-$(uname -m) && \
